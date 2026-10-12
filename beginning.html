@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MASUM | Portfolio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg: #090b0d;
+    --card: #121518;
+    --text: #f5f5ef;
+    --muted: #a4a8a2;
+    --green: #d6ff43;
+    --line: #292d2c;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+/* NAVBAR */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(9, 11, 13, 0.92);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--line);
+}
+
+.navbar {
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: var(--green);
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: var(--muted);
+    font-size: 13px;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: var(--green);
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    color: white;
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero {
+    min-height: 85vh;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    align-items: center;
+    gap: 30px;
+    padding-top: 50px;
+    padding-bottom: 60px;
+}
+
+.eyebrow {
+    color: var(--green);
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: clamp(48px, 7vw, 90px);
+    line-height: .98;
+    letter-spacing: -5px;
+    margin: 25px 0;
+}
+
+.outline {
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+}
+
+.green {
+    color: var(--green);
+}
+
+.hero p {
+    max-width: 520px;
+    color: var(--muted);
+    font-size: 17px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 20px;
+    border: 1px solid var(--line);
+    font-weight: bold;
+    font-size: 13px;
+    transition: .3s;
+}
+
+.btn-primary {
+    color: #111;
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+}
+
+/* HERO ART */
+.art {
+    min-height: 350px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.orb {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 30% 25%,
+        #f5ffbd,
+        #d6ff43 10%,
+        #667b28 35%,
+        #151a12 65%,
+        #080908
+    );
+    box-shadow: 0 0 90px #d6ff4320;
+    animation: float 5s ease-in-out infinite;
+}
+
+.orbit {
+    position: absolute;
+    width: 330px;
+    height: 120px;
+    border: 2px solid #d6ff4380;
+    border-radius: 50%;
+    transform: rotate(-30deg);
+}
+
+.orbit.two {
+    width: 370px;
+    height: 140px;
+    border-color: #ffffff30;
+    transform: rotate(40deg);
+}
+
+.art-label {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* GENERAL SECTIONS */
+section {
+    padding: 100px 0;
+    border-top: 1px solid var(--line);
+}
+
+.section-label {
+    color: var(--green);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: clamp(40px, 6vw, 65px);
+    line-height: 1.05;
+    letter-spacing: -3px;
+    margin: 15px 0 35px;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+/* ABOUT */
+.about-grid {
+    display: grid;
+    grid-template-columns: .7fr 1.3fr;
+    gap: 50px;
+}
+
+.about-card {
+    padding: 30px;
+    min-height: 250px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.about-card strong {
+    color: var(--green);
+    font-size: 75px;
+}
+
+.about-text h3 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    color: var(--muted);
+    margin-bottom: 15px;
+}
+
+/* SKILLS */
+.skills {
+    background: #0d1011;
+}
+
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--line);
+}
+
+.skill {
+    padding: 25px;
+    min-height: 170px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transition: .3s;
+}
+
+.skill:hover {
+    background: #d6ff430c;
+}
+
+.skill small {
+    color: var(--green);
+}
+
+.skill h3 {
+    margin-top: 35px;
+}
+
+.skill p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* PROJECTS */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.project {
+    background: var(--card);
+    border: 1px solid var(--line);
+    transition: .3s;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+    border-color: var(--green);
+}
+
+.project-image {
+    height: 230px;
+    background: linear-gradient(135deg, #28301b, #101311);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.project:nth-child(2) .project-image {
+    background: linear-gradient(135deg, #20233c, #101115);
+}
+
+.project:nth-child(3) .project-image {
+    background: linear-gradient(135deg, #38202d, #121014);
+}
+
+.project:nth-child(4) .project-image {
+    background: linear-gradient(135deg, #16302a, #101313);
+}
+
+.project-image span {
+    color: var(--green);
+    font-size: 65px;
+    font-weight: 900;
+    border: 1px solid #d6ff4380;
+    padding: 25px 35px;
+    transform: rotate(-8deg);
+}
+
+.project-content {
+    padding: 25px;
+}
+
+.project-content small {
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.project-content h3 {
+    font-size: 25px;
+    margin: 10px 0;
+}
+
+.project-content p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.project-content a {
+    display: inline-block;
+    color: var(--green);
+    margin-top: 18px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* CONTACT */
+.contact-box {
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: clamp(25px, 6vw, 65px);
+}
+
+.contact-box h2 {
+    max-width: 750px;
+}
+
+.contact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+footer {
+    border-top: 1px solid var(--line);
+    padding: 25px 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* ANIMATION */
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-6deg); }
+    50% { transform: translateY(-15px) rotate(6deg); }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: .7s;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MOBILE */
+@media (max-width: 800px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 75px;
+    }
+
+    .art {
+        min-height: 320px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 92%;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        padding: 25px;
+        background: #090b0d;
+        flex-direction: column;
+        gap: 20px;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    h1 {
+        letter-spacing: -3px;
+    }
+
+    .orb {
+        width: 190px;
+        height: 190px;
+    }
+
+    .orbit {
+        width: 260px;
+        height: 100px;
+    }
+
+    .orbit.two {
+        width: 290px;
+    }
+
+    section {
+        padding: 70px 0;
+    }
+
+    .skill-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skill {
+        border-right: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="container navbar">
+        <a href="#home" class="logo">MASUM<span>.</span></a>
+
+        <button class="menu-btn" id="menuBtn">MENU ☰</button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact ↗</a>
+        </div>
+    </div>
+</nav>
+
+<header class="container hero" id="home">
+    <div>
+        <div class="eyebrow">CSE Student · Bangladesh</div>
+
+        <h1>
+            ENGINEER.<br>
+            <span class="outline">DESIGNER.</span><br>
+            <span class="green">CREATIVE MIND.</span>
+        </h1>
+
+        <p>
+            Hi, I'm Mahfujur Rahman Masum.
+            I enjoy turning ideas into useful digital experiences
+            through code, design, and imagination.
+        </p>
+
+        <div class="buttons">
+            <a href="#projects" class="btn btn-primary">
+                EXPLORE MY WORK ↘
+            </a>
+
+            <a href="#contact" class="btn">
+                LET'S CONNECT ↗
+            </a>
+        </div>
+    </div>
+
+    <div class="art">
+        <div class="orbit"></div>
+        <div class="orbit two"></div>
+        <div class="orb"></div>
+        <div class="art-label">
+            PORTFOLIO / 2026<br>
+            <strong>Ideas into reality.</strong>
+        </div>
+    </div>
+</header>
+
+<section id="about">
+    <div class="container">
+        <div class="section-label">01 / About Me</div>
+        <h2>NOT HERE TO<br>BE ORDINARY.</h2>
+
+        <div class="about-grid">
+            <div class="about-card reveal">
+                <strong>M.</strong>
+                <p class="muted">
+                    Building skills today. Creating better things tomorrow.
+                </p>
+            </div>
+
+            <div class="about-text reveal">
+                <h3>Computer Science student.<br>Creative soul.</h3>
+
+                <p>
+                    I'm a Computer Science and Engineering student
+                    who enjoys exploring technology, programming,
+                    and creative digital experiences.
+                </p>
+
+                <p>
+                    I believe every small project is an opportunity
+                    to learn something new and improve my skills.
+                    My goal is to build useful, beautiful, and
+                    memorable digital products.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="skills" id="skills">
+    <div class="container">
+        <div class="section-label">02 / My Toolkit</div>
+        <h2>SKILLS &<br>EXPLORATION.</h2>
+
+        <div class="skill-grid reveal">
+            <div class="skill">
+                <small>01 / FRONTEND</small>
+                <h3>HTML & CSS</h3>
+                <p>Responsive layouts and web design.</p>
+            </div>
+
+            <div class="skill">
+                <small>02 / INTERACTION</small>
+                <h3>JavaScript</h3>
+                <p>Interactive features and animations.</p>
+            </div>
+
+            <div class="skill">
+                <small>03 / PROGRAMMING</small>
+                <h3>C & Python</h3>
+                <p>Programming logic and problem solving.</p>
+            </div>
+
+            <div class="skill">
+                <small>04 / CREATIVE</small>
+                <h3>UI Design</h3>
+                <p>Clean and memorable interfaces.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="container">
+        <div class="section-label">03 / Selected Projects</div>
+        <h2>MADE WITH<br>INTENTION.</h2>
+
+        <div class="project-grid">
+            <article class="project reveal">
+                <div class="project-image"><span>M.</span></div>
+                <div class="project-content">
+                    <small>Web Development</small>
+                    <h3>Personal Portfolio</h3>
+                    <p>A digital home to showcase my skills and journey.</p>
+                    <a href="#contact">VIEW PROJECT ↗</a>
+                </div>
+            </article>
+
+            <article class="project reveal">
+                <div class="project-image"><span>01</span></div>
+                <div class="project-content">
+                    <small>Programming</small>
+                    <h3>CGPA Calculator</h3>
+                    <p>A simple tool for calculating academic results.</p>
+                    <a href="#contact">VIEW PROJECT ↗</a>
+                </div>
+            </article>
+
+            <article class="project reveal">
+                <div class="project-image"><span>⌘</span></div>
+                <div class="project-content">
+                    <small>Creative Coding</small>
+                    <h3>Mini Games</h3>
+                    <p>Interactive browser games made for fun and learning.</p>
+                    <a href="#contact">VIEW PROJECT ↗</a>
+                </div>
+            </article>
+
+            <article class="project reveal">
+                <div class="project-image"><span>+</span></div>
+                <div class="project-content">
+                    <small>Education</small>
+                    <h3>MASUM LEARN</h3>
+                    <p>A learning hub for exploring web development.</p>
+                    <a href="#contact">VIEW PROJECT ↗</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container">
+        <div class="contact-box reveal">
+            <div class="section-label">04 / Contact</div>
+            <h2>LET'S MAKE<br><span class="green">SOMETHING REAL.</span></h2>
+
+            <div class="contact-row">
+                <p class="muted">
+                    Have an idea or want to collaborate?<br>
+                    Let's start a conversation.
+                </p>
+
+                <!-- Replace this email with your own -->
+                <a href="mailto:your-email@example.com"
+                   class="btn btn-primary">
+                    GET IN TOUCH ↗
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-row">
+        <span>© 2026 Mahfujur Rahman Masum. All rights reserved.</span>
+        <a href="#home">BACK TO TOP ↑</a>
+    </div>
+</footer>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+
+    menuBtn.textContent = navLinks.classList.contains("open")
+        ? "CLOSE ×"
+        : "MENU ☰";
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.textContent = "MENU ☰";
+    });
+});
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
+});
+</script>
+
+</body>
+</html>
